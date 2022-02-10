@@ -55,23 +55,6 @@ namespace MongoAPI.Controllers
         [Route("[action]")]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> SavePerson([FromBody] Person data)
-        {
-            try
-            {
-                await _mongoService.InsertDocument("local", "person", data);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new ErrorMsg(false, ex.Message));
-            }
-        }
-        
-        [HttpPost]
-        [Route("[action]")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(typeof(ErrorMsg), 400)]
         public async Task<IActionResult> SaveHotelNumber([FromBody] HotelNumber data)
         {
             try
