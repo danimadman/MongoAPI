@@ -1,0 +1,8 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Publish on DEMO" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
+    <riderPublish publish_profile="DEMO.pubxml" user_name="marstu\grigorevdg" uuid_high="8063306950297471776" uuid_low="-6917088223281172877" />
+    <method v="2">
+      <option name="Build" default="false" projectName="Portfolio_API" projectPath="D:\Projects\UNIVUZ 2016\Личные кабинеты студентов API\LK_API\Portfolio_API\Portfolio_API.csproj" />
+    </method>
+  </configuration>
+</component>

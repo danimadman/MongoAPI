@@ -1,0 +1,11 @@
+/.idea/
+/Portfolio_API/bin/
+/Portfolio_API/obj/
+/Portfolio_API/Properties/
+/.vs/LK_API/DesignTimeBuild/.dtbcache.v2
+/.vs/LK_API/v16/.suo
+/.vs/LK_API/config/applicationhost.config
+/Portfolio_API/.config/dotnet-tools.json
+/Portfolio_API/Portfolio_API.csproj.user
+/CreateIndexFilesFromJSClient/bin/
+/CreateIndexFilesFromJSClient/obj/

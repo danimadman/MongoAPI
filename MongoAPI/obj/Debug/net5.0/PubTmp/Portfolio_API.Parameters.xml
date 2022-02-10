@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="LK_PIMU_API" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Projects\\Личный\ кабинет\ студента\ API\\LK_API\\Portfolio_API\\bin\\Debug\\net5\.0\\publish\\$" />
+  </parameter>
+</parameters>
