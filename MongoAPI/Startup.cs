@@ -182,10 +182,10 @@ namespace MongoAPI
             // call builder.Populate(), that happens in AutofacServiceProviderFactory
             // for you.
             builder.Register(c => new MapperConfiguration(AutoMapperConfig.Register).CreateMapper()).As<IMapper>().SingleInstance();
-            builder.RegisterType<MongoService>();
             builder.RegisterType<PersonService>();
             builder.RegisterType<HotelService>();
             builder.RegisterType<PersonInRoomService>();
+            builder.RegisterType<DictService>();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

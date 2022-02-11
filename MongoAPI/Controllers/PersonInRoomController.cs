@@ -60,6 +60,9 @@ namespace MongoAPI.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return BadRequest(new ErrorMsg(false, "Проверьте правильность заполненных данных"));
+                
                 await _personInRoomService.CreateAsync(data);
                 return Ok();
             }
@@ -73,10 +76,13 @@ namespace MongoAPI.Controllers
         [Route("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> UpdateAsync(string id, [FromBody] PersonInRoom data)
+        public async Task<IActionResult> Update(string id, [FromBody] PersonInRoom data)
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return BadRequest(new ErrorMsg(false, "Проверьте правильность заполненных данных"));
+                
                 await _personInRoomService.UpdateAsync(id, data);
                 return Ok();
             }
@@ -90,7 +96,7 @@ namespace MongoAPI.Controllers
         [Route("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> DeleteAsync(string id)
+        public async Task<IActionResult> Delete(string id)
         {
             try
             {

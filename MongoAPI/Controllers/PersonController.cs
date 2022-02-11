@@ -60,6 +60,9 @@ namespace MongoAPI.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return BadRequest(new ErrorMsg(false, "Проверьте правильность заполненных данных"));
+                
                 await _personService.CreateAsync(data);
                 return Ok();
             }
@@ -77,6 +80,9 @@ namespace MongoAPI.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return BadRequest(new ErrorMsg(false, "Проверьте правильность заполненных данных"));
+                
                 await _personService.UpdateAsync(id, data);
                 return Ok();
             }

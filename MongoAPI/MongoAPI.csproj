@@ -35,6 +35,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Services\Common" />
       <Folder Include="wwwroot" />
     </ItemGroup>
 
