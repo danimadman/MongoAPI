@@ -98,14 +98,15 @@ namespace MongoAPI.Services
             return res;
         }
 
-        /// <summary>
-        /// Запись документа
-        /// </summary>
-        /// <param name="dbName">имя базы данных</param>
-        /// <param name="collectionName">имя коллекции</param>
-        /// <param name="data">данные</param>
-        /// <returns></returns>
-        public async Task<T> GetDocument<T>(string dbName, string collectionName, ObjectId id)
+        public async Task<List<T>> GetAsync<T>(string dbName, string collectionName)
+        {
+            SetDatabase(dbName);
+            IMongoCollection<T> collection = GetCollection<T>(collectionName);
+
+            return await collection.Find(_ => true).ToListAsync();;
+        }
+        
+        public async Task<T> GetOneAsync<T>(string dbName, string collectionName, ObjectId id)
         {
             SetDatabase(dbName);
             IMongoCollection<T> collection = GetCollection<T>(collectionName);
@@ -113,46 +114,24 @@ namespace MongoAPI.Services
             var res = await collection.Find(new BsonDocument("_id", id)).FirstOrDefaultAsync();
             return res;
         }
-        
-        /// <summary>
-        /// Запись документа
-        /// </summary>
-        /// <param name="dbName">имя базы данных</param>
-        /// <param name="collectionName">имя коллекции</param>
-        /// <param name="data">данные</param>
-        /// <returns></returns>
-        public async Task InsertDocument<T>(string dbName, string collectionName, T data)
+
+        public async Task CreateAsync<T>(string dbName, string collectionName, T data)
         {
             SetDatabase(dbName);
             IMongoCollection<T> collection = GetCollection<T>(collectionName);
 
             await collection.InsertOneAsync(data);
         }
-        
-        /// <summary>
-        /// Обновление документа
-        /// </summary>
-        /// <param name="dbName">имя базы данных</param>
-        /// <param name="collectionName">имя коллекции</param>
-        /// <param name="data">данные</param>
-        /// <param name="id">id документа</param>
-        /// <returns></returns>
-        public async Task UpdateDocument<T>(string dbName, string collectionName, T data, ObjectId id)
+
+        public async Task UpdateAsync<T>(string dbName, string collectionName, T data, ObjectId id)
         {
             SetDatabase(dbName);
             IMongoCollection<T> collection = GetCollection<T>(collectionName);
 
             await collection.ReplaceOneAsync(new BsonDocument("_id", id), data);
         }
-        
-        /// <summary>
-        /// Удаление документа
-        /// </summary>
-        /// <param name="dbName">имя базы данных</param>
-        /// <param name="collectionName">имя коллекции</param>
-        /// <param name="id">данные</param>
-        /// <returns></returns>
-        public async Task DeleteDocument<T>(string dbName, string collectionName, ObjectId id)
+
+        public async Task RemoveAsync<T>(string dbName, string collectionName, ObjectId id)
         {
             SetDatabase(dbName);
             IMongoCollection<T> collection = GetCollection<T>(collectionName);

@@ -34,6 +34,9 @@ namespace MongoAPI
             services.AddControllers();
             services.AddHttpContextAccessor();
             services.Configure<Settings>(ConfigurationRoot.GetSection("Settings"));
+            services.Configure<PersonDatabaseSettings>(ConfigurationRoot.GetSection("PersonDatabaseSettings"));
+            services.Configure<HotelDatabaseSettings>(ConfigurationRoot.GetSection("HotelDatabaseSettings"));
+            services.Configure<PersonInRoomDbSettings>(ConfigurationRoot.GetSection("PersonInRoomDbSettings"));
             services.Configure<FormOptions>(x =>
             {
                 x.ValueLengthLimit = int.MaxValue;
@@ -180,6 +183,9 @@ namespace MongoAPI
             // for you.
             builder.Register(c => new MapperConfiguration(AutoMapperConfig.Register).CreateMapper()).As<IMapper>().SingleInstance();
             builder.RegisterType<MongoService>();
+            builder.RegisterType<PersonService>();
+            builder.RegisterType<HotelService>();
+            builder.RegisterType<PersonInRoomService>();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
