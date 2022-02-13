@@ -60,8 +60,7 @@ namespace MongoAPI.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return BadRequest(new ErrorMsg(false, "Проверьте правильность заполненных данных"));
+                ModelIsValid(data);
                 
                 await _personInRoomService.CreateAsync(data);
                 return Ok();
@@ -73,17 +72,15 @@ namespace MongoAPI.Controllers
         }
         
         [HttpPut]
-        [Route("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> Update(string id, [FromBody] PersonInRoom data)
+        public async Task<IActionResult> Update([FromBody] PersonInRoom data)
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return BadRequest(new ErrorMsg(false, "Проверьте правильность заполненных данных"));
+                ModelIsValid(data);
                 
-                await _personInRoomService.UpdateAsync(id, data);
+                await _personInRoomService.UpdateAsync(data);
                 return Ok();
             }
             catch (Exception ex)
@@ -107,6 +104,24 @@ namespace MongoAPI.Controllers
             {
                 return BadRequest(new ErrorMsg(false, ex.Message));
             }
+        }
+
+        private void ModelIsValid(PersonInRoom personInRoom)
+        {
+            // if (string.IsNullOrEmpty(personInRoom.PersonId))
+            //     throw new Exception("Не указан клиент");
+            //
+            // if (string.IsNullOrEmpty(personInRoom.HotelRoomId))
+            //     throw new Exception("Не указан номер отеля");
+
+            if (personInRoom.SettlementDate == DateTime.MinValue)
+                throw new Exception("Недопустимое значение для даты заселения в номер");
+
+            if (personInRoom.ReleaseDate == DateTime.MinValue)
+                throw new Exception("Недопустимое значение для даты освобождения номер");
+
+            if (!ModelState.IsValid)
+                throw new Exception("Проверьте правильность заполненных данных");
         }
     }
 }

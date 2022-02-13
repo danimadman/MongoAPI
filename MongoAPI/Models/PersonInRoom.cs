@@ -11,18 +11,18 @@ namespace MongoAPI.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Клиент должен быть указан")]
         [BsonRepresentation(BsonType.ObjectId)]
         public string PersonId { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Номер отеля должен быть указан")]
         [BsonRepresentation(BsonType.ObjectId)]
         public string HotelRoomId { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Недопустимое значение для даты заселения в номер")]
         public DateTime SettlementDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Недопустимое значение для даты освобождения номера")]
         public DateTime ReleaseDate { get; set; }
         
         public string Note { get; set; }

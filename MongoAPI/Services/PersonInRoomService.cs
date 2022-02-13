@@ -23,7 +23,12 @@ namespace MongoAPI.Services
             
             IMongoDatabase db = _mongoClient.GetDatabase(_personInRoomDbSettings.DatabaseName);
             _collection = db.GetCollection<PersonInRoom>(_personInRoomDbSettings.CollectionName);
-
+            if (_collection == null)
+            {
+                db.CreateCollection(_personInRoomDbSettings.CollectionName);
+                _collection = db.GetCollection<PersonInRoom>(_personInRoomDbSettings.CollectionName);
+            }
+            
             _hotelService = hotelService;
         }
 
@@ -34,6 +39,20 @@ namespace MongoAPI.Services
 
         public async Task CreateAsync(PersonInRoom personInRoom)
         {
+            await AllowSave(personInRoom);
+            await _collection.InsertOneAsync(personInRoom);
+        }
+
+        public async Task UpdateAsync(PersonInRoom personInRoom)
+        {
+            await AllowSave(personInRoom);
+            await _collection.ReplaceOneAsync(x => x.Id == personInRoom.Id, personInRoom);
+        }
+
+        public async Task RemoveAsync(string id) => await _collection.DeleteOneAsync(x => x.Id == id);
+
+        private async Task AllowSave(PersonInRoom personInRoom)
+        {
             // проверим на наличие свободного места
             var hotelRoom = await _hotelService.GetAsync(personInRoom.HotelRoomId);
 
@@ -41,20 +60,15 @@ namespace MongoAPI.Services
                 throw new Exception("Выбранный номер отеля не найден");
             
             // найдем количество забронированных мест, которые пересекаются по времени с текущим клиентом 
-            var personsInRoomCount = await _collection.Find(x => x.HotelRoomId == personInRoom.HotelRoomId
-                && (x.SettlementDate >= personInRoom.SettlementDate && x.SettlementDate <= personInRoom.ReleaseDate 
-                    || x.ReleaseDate >= personInRoom.SettlementDate && x.ReleaseDate <= personInRoom.ReleaseDate))
+            var personsInRoomCount = await _collection.Find(x => 
+                    x.HotelRoomId == personInRoom.HotelRoomId
+                    && (string.IsNullOrEmpty(personInRoom.Id) || x.Id != personInRoom.Id)
+                    && (x.SettlementDate >= personInRoom.SettlementDate && x.SettlementDate <= personInRoom.ReleaseDate 
+                         || x.ReleaseDate >= personInRoom.SettlementDate && x.ReleaseDate <= personInRoom.ReleaseDate))
                 .CountDocumentsAsync();
 
             if (personsInRoomCount >= hotelRoom.Seats)
                 throw new Exception($"Нет свободных мест в {hotelRoom.Number} номере отеля");
-            
-            await _collection.InsertOneAsync(personInRoom);
         }
-
-        public async Task UpdateAsync(string id, PersonInRoom personInRoom) =>
-            await _collection.ReplaceOneAsync(x => x.Id == id, personInRoom);
-
-        public async Task RemoveAsync(string id) => await _collection.DeleteOneAsync(x => x.Id == id);
     }
 }

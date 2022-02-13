@@ -50,10 +50,6 @@
           "Novell.Directory.Ldap.NETStandard": "3.6.0",
           "Swashbuckle.AspNetCore": "5.6.3",
           "System.Text.Json": "5.0.1",
-          "Telerik.Documents.Core": "2021.1.222",
-          "Telerik.Documents.Fixed": "2021.1.222",
-          "Telerik.Documents.Flow": "2021.1.222",
-          "Telerik.Documents.Flow.FormatProviders.Pdf": "2021.1.222",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -1129,11 +1125,7 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
-      "System.Collections.Immutable/5.0.0": {
-        "compile": {
-          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
-        }
-      },
+      "System.Collections.Immutable/5.0.0": {},
       "System.Collections.NonGeneric/4.3.0": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.3.0",
@@ -1160,11 +1152,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.ComponentModel.Annotations/5.0.0": {
-        "compile": {
-          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {}
-        }
-      },
+      "System.ComponentModel.Annotations/5.0.0": {},
       "System.ComponentModel.Primitives/4.3.0": {
         "dependencies": {
           "System.ComponentModel": "4.3.0",
@@ -1497,11 +1485,7 @@
           }
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/5.0.0": {
-        "compile": {
-          "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll": {}
-        }
-      },
+      "System.Runtime.CompilerServices.Unsafe/5.0.0": {},
       "System.Runtime.Extensions/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -1738,76 +1722,6 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
-        }
-      },
-      "Telerik.Documents.Core/2021.1.222": {
-        "dependencies": {
-          "Telerik.Zip": "2021.1.222"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Telerik.Documents.Core.dll": {
-            "assemblyVersion": "2021.1.222.20",
-            "fileVersion": "2021.1.222.20"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/Telerik.Documents.Core.dll": {}
-        }
-      },
-      "Telerik.Documents.Fixed/2021.1.222": {
-        "dependencies": {
-          "Telerik.Documents.Core": "2021.1.222",
-          "Telerik.Zip": "2021.1.222"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Telerik.Documents.Fixed.dll": {
-            "assemblyVersion": "2021.1.222.20",
-            "fileVersion": "2021.1.222.20"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/Telerik.Documents.Fixed.dll": {}
-        }
-      },
-      "Telerik.Documents.Flow/2021.1.222": {
-        "dependencies": {
-          "Telerik.Documents.Core": "2021.1.222"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Telerik.Documents.Flow.dll": {
-            "assemblyVersion": "2021.1.222.20",
-            "fileVersion": "2021.1.222.20"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/Telerik.Documents.Flow.dll": {}
-        }
-      },
-      "Telerik.Documents.Flow.FormatProviders.Pdf/2021.1.222": {
-        "dependencies": {
-          "Telerik.Documents.Core": "2021.1.222",
-          "Telerik.Documents.Fixed": "2021.1.222",
-          "Telerik.Documents.Flow": "2021.1.222"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Telerik.Documents.Flow.FormatProviders.Pdf.dll": {
-            "assemblyVersion": "2021.1.222.20",
-            "fileVersion": "2021.1.222.20"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/Telerik.Documents.Flow.FormatProviders.Pdf.dll": {}
-        }
-      },
-      "Telerik.Zip/2021.1.222": {
-        "runtime": {
-          "lib/netstandard2.0/Telerik.Zip.dll": {
-            "assemblyVersion": "2021.1.222.20",
-            "fileVersion": "2021.1.222.20"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/Telerik.Zip.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -4379,41 +4293,6 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
-    },
-    "Telerik.Documents.Core/2021.1.222": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-5WUtnvWL9wdL9g6JDGApjOLgpbJVOZKy6kyNX1HuwS8M9XG2HSxP01mCz3tiIdEFEl39Kw66F7xtn0m5M0nTxQ==",
-      "path": "telerik.documents.core/2021.1.222",
-      "hashPath": "telerik.documents.core.2021.1.222.nupkg.sha512"
-    },
-    "Telerik.Documents.Fixed/2021.1.222": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-vZcHoUFeJNSySOAeReuvoizHm/UtD6/uWjMB3RLbiZbexz2qBkFBPPLHM2RrtzW/UG7wXpXFrZakBbX+7F76Kg==",
-      "path": "telerik.documents.fixed/2021.1.222",
-      "hashPath": "telerik.documents.fixed.2021.1.222.nupkg.sha512"
-    },
-    "Telerik.Documents.Flow/2021.1.222": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-NtQcHsb2Pb06NTTh0KBD+7ypRlOPMzqcCQZ9zX2nJ6GCuz12pXyjhbYukru4DW7Wed9kGz0zG2oZ3PuPuL4lZw==",
-      "path": "telerik.documents.flow/2021.1.222",
-      "hashPath": "telerik.documents.flow.2021.1.222.nupkg.sha512"
-    },
-    "Telerik.Documents.Flow.FormatProviders.Pdf/2021.1.222": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-zcumPJkQE8ZmT5ufpTx+tqsIvjffBWd6WDAVOKT5kHlC/M1C5kA8PsNlItqCbnjKYMx1pxbj/LZWfKdbsmIgqw==",
-      "path": "telerik.documents.flow.formatproviders.pdf/2021.1.222",
-      "hashPath": "telerik.documents.flow.formatproviders.pdf.2021.1.222.nupkg.sha512"
-    },
-    "Telerik.Zip/2021.1.222": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-rPxj8Jr2yBsJbCqHXFeX0vCV2BVtlgj8WTPVSZRhJvzr14NaO8v70qQfOTIT6etjhZyi2zaUiv/9puMy9TOlGw==",
-      "path": "telerik.zip/2021.1.222",
-      "hashPath": "telerik.zip.2021.1.222.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
       "type": "referenceassembly",

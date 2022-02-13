@@ -21,6 +21,11 @@ namespace MongoAPI.Services
             
             IMongoDatabase db = _mongoClient.GetDatabase(_personDatabaseSettings.DatabaseName);
             _collection = db.GetCollection<Person>(_personDatabaseSettings.CollectionName);
+            if (_collection == null)
+            {
+                db.CreateCollection(_personDatabaseSettings.CollectionName);
+                _collection = db.GetCollection<Person>(_personDatabaseSettings.CollectionName);
+            }
         }
 
         public async Task<List<Person>> GetAsync() => await _collection.Find(_ => true).ToListAsync();

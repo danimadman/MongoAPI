@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using MongoAPI.Models;
-using MongoAPI.Options;
+using MongoAPI.Models.Enums;
 using MongoAPI.Services;
-using MongoDB.Bson;
 
 namespace MongoAPI.Controllers
 {
@@ -60,8 +58,7 @@ namespace MongoAPI.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return BadRequest(new ErrorMsg(false, "Проверьте правильность заполненных данных"));
+                ModelIsValid(data);
                 
                 await _hotelService.CreateAsync(data);
                 return Ok();
@@ -73,17 +70,15 @@ namespace MongoAPI.Controllers
         }
         
         [HttpPut]
-        [Route("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> Update(string id, [FromBody] HotelRoom data)
+        public async Task<IActionResult> Update([FromBody] HotelRoom data)
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return BadRequest(new ErrorMsg(false, "Проверьте правильность заполненных данных"));
+                ModelIsValid(data);
                 
-                await _hotelService.UpdateAsync(id, data);
+                await _hotelService.UpdateAsync(data);
                 return Ok();
             }
             catch (Exception ex)
@@ -107,6 +102,24 @@ namespace MongoAPI.Controllers
             {
                 return BadRequest(new ErrorMsg(false, ex.Message));
             }
+        }
+
+        private void ModelIsValid(HotelRoom room)
+        {
+            if (!Enum.IsDefined(typeof(ComformLevelEnum), room.ComformLevel))
+                throw new Exception("Выберите уровень комфорта");
+            //
+            // if (room.Cost < 0)
+            //     throw new Exception("Недопустимое значение для цены номера отеля");
+            //
+            // if (room.Number < 0)
+            //     throw new Exception("Недопустимое значение для номер отеля");
+            //
+            // if (room.Seats < 0)
+            //     throw new Exception("Недопустимое значение для количества мест в номере отеля");
+            
+            if (!ModelState.IsValid)
+                throw new Exception("Проверьте правильность заполненный данных");
         }
     }
 }

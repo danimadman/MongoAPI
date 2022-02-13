@@ -14,15 +14,15 @@ namespace MongoAPI.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Имя клиента должно быть заполнено")]
         public string FirstName { get; set; }
         
         public string MiddleName { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Фамилия клиента должна быть заполнена")]
         public string LastName { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Паспорт должен быть заполнен")]
         public Passport Passport { get; set; }
         
         public string Comment { get; set; }
@@ -30,19 +30,19 @@ namespace MongoAPI.Models
 
     public class Passport
     {
-        [Required]
+        [Required(ErrorMessage = "Серия паспорта должна быть заполнена")]
         public string Series { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessage = "Номер пасопрта должен быть заполнен")]
         public string Number { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessage = "Организация, которая выдала паспорт, должна быть заполнена")]
         public string Issued { get; set; }
-        
-        [Required]
-        public DateTime DateIssued { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessage = "Дата выдачи паспорта должен быть заполнен")]
+        public DateTime? DateIssued { get; set; }
+
+        [Required(ErrorMessage = "Код подразделения должен быть заполнен")]
         public string DivisionCode { get; set; }
     }
 }

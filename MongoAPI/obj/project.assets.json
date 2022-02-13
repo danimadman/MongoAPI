@@ -2082,66 +2082,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "Telerik.Documents.Core/2021.1.222": {
-        "type": "package",
-        "dependencies": {
-          "Telerik.Zip": "[2021.1.222]"
-        },
-        "compile": {
-          "lib/netstandard2.0/Telerik.Documents.Core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Telerik.Documents.Core.dll": {}
-        }
-      },
-      "Telerik.Documents.Fixed/2021.1.222": {
-        "type": "package",
-        "dependencies": {
-          "Telerik.Documents.Core": "[2021.1.222]",
-          "Telerik.Zip": "[2021.1.222]"
-        },
-        "compile": {
-          "lib/netstandard2.0/Telerik.Documents.Fixed.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Telerik.Documents.Fixed.dll": {}
-        }
-      },
-      "Telerik.Documents.Flow/2021.1.222": {
-        "type": "package",
-        "dependencies": {
-          "Telerik.Documents.Core": "[2021.1.222]"
-        },
-        "compile": {
-          "lib/netstandard2.0/Telerik.Documents.Flow.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Telerik.Documents.Flow.dll": {}
-        }
-      },
-      "Telerik.Documents.Flow.FormatProviders.Pdf/2021.1.222": {
-        "type": "package",
-        "dependencies": {
-          "Telerik.Documents.Core": "[2021.1.222]",
-          "Telerik.Documents.Fixed": "[2021.1.222]",
-          "Telerik.Documents.Flow": "[2021.1.222]"
-        },
-        "compile": {
-          "lib/netstandard2.0/Telerik.Documents.Flow.FormatProviders.Pdf.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Telerik.Documents.Flow.FormatProviders.Pdf.dll": {}
-        }
-      },
-      "Telerik.Zip/2021.1.222": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Telerik.Zip.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Telerik.Zip.dll": {}
-        }
       }
     }
   },
@@ -7360,96 +7300,6 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
-    },
-    "Telerik.Documents.Core/2021.1.222": {
-      "sha512": "5WUtnvWL9wdL9g6JDGApjOLgpbJVOZKy6kyNX1HuwS8M9XG2HSxP01mCz3tiIdEFEl39Kw66F7xtn0m5M0nTxQ==",
-      "type": "package",
-      "path": "telerik.documents.core/2021.1.222",
-      "files": [
-        ".nupkg.metadata",
-        "LicenseAgreements/EULA.txt",
-        "LicenseAgreements/ThirdParty/AutoIt.txt",
-        "LicenseAgreements/ThirdParty/Progress Telerik UI for Silverlight - notices.txt",
-        "LicenseAgreements/ThirdParty/Progress Telerik UI for WPF - notices.txt",
-        "LicenseAgreements/ThirdParty/SpecFlow.txt",
-        "images/tdp.png",
-        "lib/netstandard2.0/Telerik.Documents.Core.dll",
-        "lib/netstandard2.0/Telerik.Documents.Core.xml",
-        "telerik.documents.core.2021.1.222.nupkg.sha512",
-        "telerik.documents.core.nuspec"
-      ]
-    },
-    "Telerik.Documents.Fixed/2021.1.222": {
-      "sha512": "vZcHoUFeJNSySOAeReuvoizHm/UtD6/uWjMB3RLbiZbexz2qBkFBPPLHM2RrtzW/UG7wXpXFrZakBbX+7F76Kg==",
-      "type": "package",
-      "path": "telerik.documents.fixed/2021.1.222",
-      "files": [
-        ".nupkg.metadata",
-        "LicenseAgreements/EULA.txt",
-        "LicenseAgreements/ThirdParty/AutoIt.txt",
-        "LicenseAgreements/ThirdParty/Progress Telerik UI for Silverlight - notices.txt",
-        "LicenseAgreements/ThirdParty/Progress Telerik UI for WPF - notices.txt",
-        "LicenseAgreements/ThirdParty/SpecFlow.txt",
-        "images/tdp.png",
-        "lib/netstandard2.0/Telerik.Documents.Fixed.dll",
-        "lib/netstandard2.0/Telerik.Documents.Fixed.xml",
-        "telerik.documents.fixed.2021.1.222.nupkg.sha512",
-        "telerik.documents.fixed.nuspec"
-      ]
-    },
-    "Telerik.Documents.Flow/2021.1.222": {
-      "sha512": "NtQcHsb2Pb06NTTh0KBD+7ypRlOPMzqcCQZ9zX2nJ6GCuz12pXyjhbYukru4DW7Wed9kGz0zG2oZ3PuPuL4lZw==",
-      "type": "package",
-      "path": "telerik.documents.flow/2021.1.222",
-      "files": [
-        ".nupkg.metadata",
-        "LicenseAgreements/EULA.txt",
-        "LicenseAgreements/ThirdParty/AutoIt.txt",
-        "LicenseAgreements/ThirdParty/Progress Telerik UI for Silverlight - notices.txt",
-        "LicenseAgreements/ThirdParty/Progress Telerik UI for WPF - notices.txt",
-        "LicenseAgreements/ThirdParty/SpecFlow.txt",
-        "images/tdp.png",
-        "lib/netstandard2.0/Telerik.Documents.Flow.dll",
-        "lib/netstandard2.0/Telerik.Documents.Flow.xml",
-        "telerik.documents.flow.2021.1.222.nupkg.sha512",
-        "telerik.documents.flow.nuspec"
-      ]
-    },
-    "Telerik.Documents.Flow.FormatProviders.Pdf/2021.1.222": {
-      "sha512": "zcumPJkQE8ZmT5ufpTx+tqsIvjffBWd6WDAVOKT5kHlC/M1C5kA8PsNlItqCbnjKYMx1pxbj/LZWfKdbsmIgqw==",
-      "type": "package",
-      "path": "telerik.documents.flow.formatproviders.pdf/2021.1.222",
-      "files": [
-        ".nupkg.metadata",
-        "LicenseAgreements/EULA.txt",
-        "LicenseAgreements/ThirdParty/AutoIt.txt",
-        "LicenseAgreements/ThirdParty/Progress Telerik UI for Silverlight - notices.txt",
-        "LicenseAgreements/ThirdParty/Progress Telerik UI for WPF - notices.txt",
-        "LicenseAgreements/ThirdParty/SpecFlow.txt",
-        "images/tdp.png",
-        "lib/netstandard2.0/Telerik.Documents.Flow.FormatProviders.Pdf.dll",
-        "lib/netstandard2.0/Telerik.Documents.Flow.FormatProviders.Pdf.xml",
-        "telerik.documents.flow.formatproviders.pdf.2021.1.222.nupkg.sha512",
-        "telerik.documents.flow.formatproviders.pdf.nuspec"
-      ]
-    },
-    "Telerik.Zip/2021.1.222": {
-      "sha512": "rPxj8Jr2yBsJbCqHXFeX0vCV2BVtlgj8WTPVSZRhJvzr14NaO8v70qQfOTIT6etjhZyi2zaUiv/9puMy9TOlGw==",
-      "type": "package",
-      "path": "telerik.zip/2021.1.222",
-      "files": [
-        ".nupkg.metadata",
-        "LicenseAgreements/EULA.txt",
-        "LicenseAgreements/ThirdParty/AutoIt.txt",
-        "LicenseAgreements/ThirdParty/Progress Telerik UI for Silverlight - notices.txt",
-        "LicenseAgreements/ThirdParty/Progress Telerik UI for WPF - notices.txt",
-        "LicenseAgreements/ThirdParty/SpecFlow.txt",
-        "images/tdp.png",
-        "lib/netstandard2.0/Telerik.Zip.dll",
-        "lib/netstandard2.0/Telerik.Zip.xml",
-        "telerik.zip.2021.1.222.nupkg.sha512",
-        "telerik.zip.nuspec"
-      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -7470,33 +7320,27 @@
       "MongoDB.Driver >= 2.14.1",
       "Novell.Directory.Ldap.NETStandard >= 3.6.0",
       "Swashbuckle.AspNetCore >= 5.6.3",
-      "System.Text.Json >= 5.0.1",
-      "Telerik.Documents.Core >= 2021.1.222",
-      "Telerik.Documents.Fixed >= 2021.1.222",
-      "Telerik.Documents.Flow >= 2021.1.222",
-      "Telerik.Documents.Flow.FormatProviders.Pdf >= 2021.1.222"
+      "System.Text.Json >= 5.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GrigorevDG\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\shief\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\LK_API\\MongoAPI\\MongoAPI.csproj",
+      "projectUniqueName": "D:\\Проекты\\MongoAPI\\MongoAPI\\MongoAPI.csproj",
       "projectName": "MongoAPI",
-      "projectPath": "D:\\Projects\\LK_API\\MongoAPI\\MongoAPI.csproj",
-      "packagesPath": "C:\\Users\\GrigorevDG\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\LK_API\\MongoAPI\\obj\\",
+      "projectPath": "D:\\Проекты\\MongoAPI\\MongoAPI\\MongoAPI.csproj",
+      "packagesPath": "C:\\Users\\shief\\.nuget\\packages\\",
+      "outputPath": "D:\\Проекты\\MongoAPI\\MongoAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\GrigorevDG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\shief\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7505,7 +7349,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R1 2021\\dpl": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7595,22 +7438,6 @@
           "System.Text.Json": {
             "target": "Package",
             "version": "[5.0.1, )"
-          },
-          "Telerik.Documents.Core": {
-            "target": "Package",
-            "version": "[2021.1.222, )"
-          },
-          "Telerik.Documents.Fixed": {
-            "target": "Package",
-            "version": "[2021.1.222, )"
-          },
-          "Telerik.Documents.Flow": {
-            "target": "Package",
-            "version": "[2021.1.222, )"
-          },
-          "Telerik.Documents.Flow.FormatProviders.Pdf": {
-            "target": "Package",
-            "version": "[2021.1.222, )"
           }
         },
         "imports": [
@@ -7631,7 +7458,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
