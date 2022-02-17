@@ -1,5 +1,5 @@
-using System;
 using System.ComponentModel.DataAnnotations;
+using MongoAPI.Models.Enums;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -19,7 +19,7 @@ namespace MongoAPI.Models
         
         [Required(ErrorMessage = "Недопустимое значение для уровня комфорта")]
         [Range(1,99)]
-        public int ComformLevel { get; set; }
+        public int ComfortLevel { get; set; }
         
         [Required(ErrorMessage = "Недопустимое значение для цены номера отеля")]
         [Range(1, 999999)]

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoAPI.Models;
 using MongoAPI.Models.Enums;
@@ -8,6 +9,7 @@ using MongoAPI.Services;
 
 namespace MongoAPI.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]/[action]")]
     public class HotelController : Controller
     {
@@ -106,7 +108,7 @@ namespace MongoAPI.Controllers
 
         private void ModelIsValid(HotelRoom room)
         {
-            if (!Enum.IsDefined(typeof(ComformLevelEnum), room.ComformLevel))
+            if (!Enum.IsDefined(typeof(ComformLevelEnum), room.ComfortLevel))
                 throw new Exception("Выберите уровень комфорта");
             //
             // if (room.Cost < 0)

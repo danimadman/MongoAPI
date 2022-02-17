@@ -123,20 +123,20 @@ namespace MongoAPI
                     In = ParameterLocation.Header,  
                     Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",  
                 });*/
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement  
-                {  
-                    {  
-                        new OpenApiSecurityScheme  
-                        {  
-                            Reference = new OpenApiReference  
-                            {  
-                                Type = ReferenceType.SecurityScheme,  
-                                Id = "Bearer"  
-                            }  
-                        },  
-                        new string[] {}
-                    }  
-                }); 
+                // c.AddSecurityRequirement(new OpenApiSecurityRequirement  
+                // {  
+                //     {  
+                //         new OpenApiSecurityScheme  
+                //         {  
+                //             Reference = new OpenApiReference  
+                //             {  
+                //                 Type = ReferenceType.SecurityScheme,  
+                //                 Id = "Bearer"  
+                //             }  
+                //         },  
+                //         new string[] {}
+                //     }  
+                // }); 
             });
             // services.AddDbContext<ApiDbContext>(options =>
             //     options.UseSqlServer(ConfigurationRoot.GetConnectionString("cs1")));
@@ -157,16 +157,16 @@ namespace MongoAPI
             //         options.Filters.Add(new GlobalStudentIdCheckFilterAttribute());
             //     }
             // );
-            // var corsAllowed = ConfigurationRoot.GetValue<string>("CorsAllowed");  
-            // mvcCoreBuilder.AddCors(options =>
-            // {
-            //     options.AddPolicy("CorsPolicy", builder => builder.WithOrigins(corsAllowed)
-            //         .AllowAnyHeader()
-            //         .AllowAnyMethod()
-            //         .AllowCredentials()
-            //         .SetIsOriginAllowed((host) => true));
-            //     options.DefaultPolicyName = "CorsPolicy";
-            // });
+            var corsAllowed = ConfigurationRoot.GetValue<string>("CorsAllowed");  
+            mvcCoreBuilder.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder.WithOrigins(corsAllowed)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .SetIsOriginAllowed((host) => true));
+                options.DefaultPolicyName = "CorsPolicy";
+            });
             mvcCoreBuilder.AddApiExplorer();
             //mvcCoreBuilder.AddAuthorization();
             mvcCoreBuilder.AddJsonOptions(options =>
@@ -186,6 +186,7 @@ namespace MongoAPI
             builder.RegisterType<HotelService>();
             builder.RegisterType<PersonInRoomService>();
             builder.RegisterType<DictService>();
+            builder.RegisterType<MongoService>();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

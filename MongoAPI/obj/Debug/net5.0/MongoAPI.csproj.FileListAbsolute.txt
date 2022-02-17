@@ -41,11 +41,6 @@ D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
 D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\System.Runtime.Caching.dll
 D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
 D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\System.Text.Json.dll
-D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\Telerik.Documents.Core.dll
-D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\Telerik.Documents.Fixed.dll
-D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\Telerik.Documents.Flow.dll
-D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\Telerik.Documents.Flow.FormatProviders.Pdf.dll
-D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\Telerik.Zip.dll
 D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 D:\Projects\LK_API\MongoAPI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
