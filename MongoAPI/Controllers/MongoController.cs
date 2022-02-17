@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MongoAPI.Models;
 using MongoAPI.Services;
+using MongoDB.Bson;
+using Newtonsoft.Json;
 
 namespace MongoAPI.Controllers
 {
@@ -97,11 +100,11 @@ namespace MongoAPI.Controllers
         [Route("{dbName}/{collectionName}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> PostAsync(string dbName, string collectionName, [FromBody] object data)
+        public async Task<IActionResult> PostAsync(string dbName, string collectionName, [FromBody] dynamic value)
         {
             try
             {
-                await _mongoService.CreateAsync(dbName, collectionName, data);
+                await _mongoService.CreateAsync(dbName, collectionName, value);
                 return Ok();
             }
             catch (Exception ex)
@@ -114,11 +117,11 @@ namespace MongoAPI.Controllers
         [Route("{dbName}/{collectionName}/{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> UpdateAsync(string dbName, string collectionName, string id, [FromBody] object data)
+        public async Task<IActionResult> UpdateAsync(string dbName, string collectionName, string id, [FromBody] dynamic value)
         {
             try
             {
-                await _mongoService.UpdateAsync(dbName, collectionName, data, id);
+                await _mongoService.UpdateAsync(dbName, collectionName, value, id);
                 return Ok();
             }
             catch (Exception ex)
