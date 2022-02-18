@@ -1,10 +1,13 @@
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using MongoAPI.Models.Enums;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace MongoAPI.Models
 {
+    [Serializable]
     public class HotelRoom
     {
         [BsonId]
