@@ -121,7 +121,7 @@ namespace MongoAPI.Controllers
             //     throw new Exception("Недопустимое значение для количества мест в номере отеля");
             
             if (!ModelState.IsValid)
-                throw new Exception("Проверьте правильность заполненный данных");
+                throw new Exception("Проверьте правильность заполненных данных");
         }
     }
 }
