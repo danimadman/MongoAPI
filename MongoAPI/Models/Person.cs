@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -21,6 +22,9 @@ namespace MongoAPI.Models
         
         [Required(ErrorMessage = "Фамилия клиента должна быть заполнена")]
         public string LastName { get; set; }
+        
+        [Required(ErrorMessage = "Дата рождения должна быть заполнена")]
+        public DateTime? BirthDay { get; set; }
         
         [Required(ErrorMessage = "Паспорт должен быть заполнен")]
         public Passport Passport { get; set; }

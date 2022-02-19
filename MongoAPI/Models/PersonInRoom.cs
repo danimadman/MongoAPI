@@ -19,11 +19,11 @@ namespace MongoAPI.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string HotelRoomId { get; set; }
         
-        [Required(ErrorMessage = "Недопустимое значение для даты заселения в номер")]
-        public DateTime SettlementDate { get; set; }
+        [Required(ErrorMessage = "Поле 'Дата заселения в номер' должно быть заполнено")]
+        public DateTime? SettlementDate { get; set; }
 
-        [Required(ErrorMessage = "Недопустимое значение для даты освобождения номера")]
-        public DateTime ReleaseDate { get; set; }
+        [Required(ErrorMessage = "Поле 'Дата освобождения' должно быть заполнено")]
+        public DateTime? ReleaseDate { get; set; }
         
         public string Note { get; set; }
     }

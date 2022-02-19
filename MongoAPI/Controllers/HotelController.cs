@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using MongoAPI.Models;
 using MongoAPI.Models.Enums;
 using MongoAPI.Services;
@@ -121,7 +123,10 @@ namespace MongoAPI.Controllers
             //     throw new Exception("Недопустимое значение для количества мест в номере отеля");
             
             if (!ModelState.IsValid)
-                throw new Exception("Проверьте правильность заполненных данных");
+                throw new Exception(string.Join("; ", ModelState
+                    .Where(x => x.Value.ValidationState == ModelValidationState.Invalid)
+                    .SelectMany(x => x.Value.Errors)
+                    .Select(x => x.ErrorMessage)));
         }
     }
 }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using MongoAPI.Models;
 using MongoAPI.Options;
@@ -56,12 +58,11 @@ namespace MongoAPI.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> Post([FromBody] Person data)
+        public async Task<IActionResult> Post([FromForm] Person data)
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return BadRequest(new ErrorMsg(false, "Проверьте правильность заполненных данных"));
+                ModelIsValid();
                 
                 await _personService.CreateAsync(data);
                 return Ok();
@@ -73,17 +74,15 @@ namespace MongoAPI.Controllers
         }
         
         [HttpPut]
-        [Route("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> Update(string id, [FromBody] Person data)
+        public async Task<IActionResult> Update([FromForm] Person data)
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return BadRequest(new ErrorMsg(false, "Проверьте правильность заполненных данных"));
+                ModelIsValid();
                 
-                await _personService.UpdateAsync(id, data);
+                await _personService.UpdateAsync(data);
                 return Ok();
             }
             catch (Exception ex)
@@ -107,6 +106,15 @@ namespace MongoAPI.Controllers
             {
                 return BadRequest(new ErrorMsg(false, ex.Message));
             }
+        }
+        
+        private void ModelIsValid()
+        {
+            if (!ModelState.IsValid)
+                throw new Exception(string.Join("; ", ModelState
+                    .Where(x => x.Value.ValidationState == ModelValidationState.Invalid)
+                    .SelectMany(x => x.Value.Errors)
+                    .Select(x => x.ErrorMessage)));
         }
     }
 }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using MongoAPI.Models;
 using MongoAPI.Options;
@@ -114,14 +116,11 @@ namespace MongoAPI.Controllers
             // if (string.IsNullOrEmpty(personInRoom.HotelRoomId))
             //     throw new Exception("Не указан номер отеля");
 
-            if (personInRoom.SettlementDate == DateTime.MinValue)
-                throw new Exception("Недопустимое значение для даты заселения в номер");
-
-            if (personInRoom.ReleaseDate == DateTime.MinValue)
-                throw new Exception("Недопустимое значение для даты освобождения номер");
-
             if (!ModelState.IsValid)
-                throw new Exception("Проверьте правильность заполненных данных");
+                throw new Exception(string.Join("; ", ModelState
+                    .Where(x => x.Value.ValidationState == ModelValidationState.Invalid)
+                    .SelectMany(x => x.Value.Errors)
+                    .Select(x => x.ErrorMessage)));
         }
     }
 }

@@ -35,8 +35,8 @@ namespace MongoAPI.Services
         
         public async Task CreateAsync(Person person) => await _collection.InsertOneAsync(person);
 
-        public async Task UpdateAsync(string id, Person person) =>
-            await _collection.ReplaceOneAsync(x => x.Id == id, person);
+        public async Task UpdateAsync(Person person) =>
+            await _collection.ReplaceOneAsync(x => x.Id == person.Id, person);
 
         public async Task RemoveAsync(string id) => await _collection.DeleteOneAsync(x => x.Id == id);
     }

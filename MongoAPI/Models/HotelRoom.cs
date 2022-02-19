@@ -14,18 +14,18 @@ namespace MongoAPI.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         
-        [Required(ErrorMessage = "Недопустимое значение для номера отеля")]
+        [Required(ErrorMessage = "Поле 'Номер отеля' должно быть заполнено")]
         public int? Number { get; set; }
         
-        [Required(ErrorMessage = "Недопустимое значение для количества мест в номере отеля")]
+        [Required(ErrorMessage = "Поле 'Количество мест в номере отеля' должно быть заполнено")]
         public int? Seats { get; set; }
         
-        [Required(ErrorMessage = "Недопустимое значение для уровня комфорта")]
-        [Range(1,99)]
-        public int ComfortLevel { get; set; }
+        [Required(ErrorMessage = "Поле 'Уровень комфорта' должно быть заполнено")]
+        [Range(1,99, ErrorMessage = "Недопустимое значение для уровня комфорта")]
+        public int? ComfortLevel { get; set; }
         
-        [Required(ErrorMessage = "Недопустимое значение для цены номера отеля")]
-        [Range(1, 999999)]
+        [Required(ErrorMessage = "Поле 'Цена за номер отеля' должно быть заполнено")]
+        [Range(1, 999999, ErrorMessage = "Недопустимое значение для цены номера отеля")]
         public decimal Cost { get; set; }
     }
 }
