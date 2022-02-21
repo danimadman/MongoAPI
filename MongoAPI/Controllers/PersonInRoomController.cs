@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using MongoAPI.Models;
+using MongoAPI.Models.Dto;
 using MongoAPI.Options;
 using MongoAPI.Services;
 using MongoDB.Bson;
@@ -24,7 +25,7 @@ namespace MongoAPI.Controllers
         
         [HttpGet]
         [Route("{id}")]
-        [ProducesResponseType(typeof(PersonInRoom), 200)]
+        [ProducesResponseType(typeof(RecordsDto), 200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
         public async Task<IActionResult> GetOne(string id)
         {
@@ -40,7 +41,24 @@ namespace MongoAPI.Controllers
         }
         
         [HttpGet]
-        [ProducesResponseType(typeof(List<PersonInRoom>), 200)]
+        [Route("{id}")]
+        [ProducesResponseType(typeof(RecordDetailsDto), 200)]
+        [ProducesResponseType(typeof(ErrorMsg), 400)]
+        public async Task<IActionResult> GeRecordDetails(string id)
+        {
+            try
+            {
+                var res = await _personInRoomService.GetDetailsAsync(id);
+                return Json(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorMsg(false, ex.Message));
+            }
+        }
+        
+        [HttpGet]
+        [ProducesResponseType(typeof(List<RecordsDto>), 200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
         public async Task<IActionResult> Get()
         {

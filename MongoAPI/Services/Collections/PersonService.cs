@@ -28,6 +28,8 @@ namespace MongoAPI.Services
             }
         }
 
+        public IMongoCollection<Person> GetCollection() => _collection;
+
         public async Task<List<Person>> GetAsync() => await _collection.Find(_ => true).ToListAsync();
         
         public async Task<Person> GetAsync(string id) => 

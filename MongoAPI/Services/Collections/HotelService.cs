@@ -30,6 +30,8 @@ namespace MongoAPI.Services
             }
         }
 
+        public IMongoCollection<HotelRoom> GetCollection() => _collection;
+
         public async Task<List<HotelRoom>> GetAsync() => await _collection.Find(_ => true).ToListAsync();
         
         public async Task<HotelRoom> GetAsync(string id) => 
