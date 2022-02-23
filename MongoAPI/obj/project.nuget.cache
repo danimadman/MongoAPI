@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N1nNFn+nnT17Z9J0Hz0/mNfC6brxuO0Y2MDG1YbPXIy8Mfsn5N0xXvqqWBi6EiSz6hSge8epv+qcctqEiZg/Pg==",
+  "dgSpecHash": "RUuuh0TPBsNxDEELeqd2QRC7t43XJRDBB6ue8PJ26qxVqwusmNT6ucF4DhJC7+er7MT2COlHoXystxvbHjwSZA==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\LK_API\\MongoAPI\\MongoAPI.csproj",
+  "projectFilePath": "D:\\Projects\\MongoAPI\\MongoAPI\\MongoAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GrigorevDG\\.nuget\\packages\\autofac\\6.1.0\\autofac.6.1.0.nupkg.sha512",
     "C:\\Users\\GrigorevDG\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.1.0\\autofac.extensions.dependencyinjection.7.1.0.nupkg.sha512",

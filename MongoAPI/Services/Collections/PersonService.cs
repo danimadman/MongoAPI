@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MongoAPI.Models;
+using MongoAPI.Models.Dto;
 using MongoAPI.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -30,10 +33,30 @@ namespace MongoAPI.Services
 
         public IMongoCollection<Person> GetCollection() => _collection;
 
-        public async Task<List<Person>> GetAsync() => await _collection.Find(_ => true).ToListAsync();
-        
-        public async Task<Person> GetAsync(string id) => 
-            await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+        public async Task<List<PersonDto>> GetAsync()
+        {
+            var res = await _collection.Find(_ => true).ToListAsync();
+            return res.Select(x => new PersonDto()
+            {
+                Id = x.Id,
+                FirstName = x.FirstName,
+                MiddleName = x.MiddleName,
+                LastName = x.LastName,
+                Passport = x.Passport,
+                Comment = x.Comment,
+                BirthDay = x.BirthDay.HasValue 
+                    ? x.BirthDay.Value.ToLocalTime() : (DateTime?)null
+            }).ToList();
+        }
+
+        public async Task<Person> GetAsync(string id)
+        {
+            var person = await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            person.BirthDay = person.BirthDay.HasValue
+                ? person.BirthDay.Value.ToLocalTime()
+                : (DateTime?) null;
+            return person;
+        }
         
         public async Task CreateAsync(Person person) => await _collection.InsertOneAsync(person);
 

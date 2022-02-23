@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using MongoAPI.Models;
 using MongoAPI.Models.Dto;
@@ -76,8 +77,10 @@ namespace MongoAPI.Services
                 PersonName = $"{person.LastName} {person.FirstName} {person.MiddleName}",
                 HotelRoomId = hotelRoom.Id,
                 HotelRoomName = hotelRoom.Number.ToString(),
-                SettlementDate = record.SettlementDate,
-                ReleaseDate = record.ReleaseDate,
+                SettlementDate = record.SettlementDate.HasValue 
+                    ? record.SettlementDate.Value.ToLocalTime() : (DateTime?)null,
+                ReleaseDate = record.ReleaseDate.HasValue
+                    ? record.ReleaseDate.Value.ToLocalTime() : (DateTime?)null,
                 Note = record.Note
             };
         }
@@ -133,7 +136,7 @@ namespace MongoAPI.Services
                     && (x.SettlementDate >= personInRoom.SettlementDate && x.SettlementDate <= personInRoom.ReleaseDate 
                          || x.ReleaseDate >= personInRoom.SettlementDate && x.ReleaseDate <= personInRoom.ReleaseDate)).ToListAsync();
 
-            if (personsInRoom.Any(x => x.PersonId == personInRoom.PersonId))
+            if (string.IsNullOrEmpty(personInRoom.Id) && personsInRoom.Any(x => x.PersonId == personInRoom.PersonId))
                 throw new Exception("Данный клиент уже записан в этом номере отеля");
             
             if (personsInRoom.Count >= hotelRoom.Seats)

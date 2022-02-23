@@ -76,7 +76,7 @@ namespace MongoAPI.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> Post([FromBody] PersonInRoom data)
+        public async Task<IActionResult> Post([FromForm] PersonInRoom data)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace MongoAPI.Controllers
         [HttpPut]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> Update([FromBody] PersonInRoom data)
+        public async Task<IActionResult> Update([FromForm] PersonInRoom data)
         {
             try
             {

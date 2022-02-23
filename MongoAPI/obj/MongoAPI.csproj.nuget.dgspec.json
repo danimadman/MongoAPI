@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\LK_API\\MongoAPI\\MongoAPI.csproj": {}
+    "D:\\Projects\\MongoAPI\\MongoAPI\\MongoAPI.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\LK_API\\MongoAPI\\MongoAPI.csproj": {
+    "D:\\Projects\\MongoAPI\\MongoAPI\\MongoAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\LK_API\\MongoAPI\\MongoAPI.csproj",
+        "projectUniqueName": "D:\\Projects\\MongoAPI\\MongoAPI\\MongoAPI.csproj",
         "projectName": "MongoAPI",
-        "projectPath": "D:\\Projects\\LK_API\\MongoAPI\\MongoAPI.csproj",
+        "projectPath": "D:\\Projects\\MongoAPI\\MongoAPI\\MongoAPI.csproj",
         "packagesPath": "C:\\Users\\GrigorevDG\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\LK_API\\MongoAPI\\obj\\",
+        "outputPath": "D:\\Projects\\MongoAPI\\MongoAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

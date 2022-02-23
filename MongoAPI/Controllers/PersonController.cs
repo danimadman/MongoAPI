@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using MongoAPI.Models;
+using MongoAPI.Models.Dto;
 using MongoAPI.Options;
 using MongoAPI.Services;
 using MongoDB.Bson;
@@ -40,13 +41,13 @@ namespace MongoAPI.Controllers
         }
         
         [HttpGet]
-        [ProducesResponseType(typeof(List<Person>), 200)]
+        [ProducesResponseType(typeof(List<PersonDto>), 200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
         public async Task<IActionResult> Get()
         {
             try
             {
-                List<Person> res = await _personService.GetAsync();
+                var res = await _personService.GetAsync();
                 return Json(res);
             }
             catch (Exception ex)
