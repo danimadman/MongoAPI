@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MongoAPI.Models;
+using MongoAPI.Models.Dto;
 using MongoAPI.Services;
 using MongoDB.Bson;
 using Newtonsoft.Json;
@@ -21,14 +22,14 @@ namespace MongoAPI.Controllers
             _mongoService = mongoService;
         }
         
-        [HttpGet]
-        [ProducesResponseType(typeof(List<string>), 200)]
+        [HttpGet("{connString}")]
+        [ProducesResponseType(typeof(List<DdlDto>), 200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> GetDataBases()
+        public async Task<IActionResult> GetDataBases(string connString)
         {
             try
             {
-                var res = await _mongoService.GetDataBases();
+                var res = await _mongoService.GetDataBases(connString);
                 return Json(res);
             }
             catch (Exception ex)
@@ -38,14 +39,14 @@ namespace MongoAPI.Controllers
         }
         
         [HttpGet]
-        [Route("{dbName}")]
-        [ProducesResponseType(typeof(List<string>), 200)]
+        [Route("{connString}/{dbName}")]
+        [ProducesResponseType(typeof(List<DdlDto>), 200)]
         [ProducesResponseType(typeof(ErrorMsg), 400)]
-        public async Task<IActionResult> GetCollections(string dbName)
+        public async Task<IActionResult> GetCollections(string connString, string dbName)
         {
             try
             {
-                var res = await _mongoService.GetCollections(dbName);
+                var res = await _mongoService.GetCollections(connString, dbName);
                 return Json(res);
             }
             catch (Exception ex)
@@ -156,6 +157,7 @@ namespace MongoAPI.Controllers
             try
             {
                 (byte[] bytes, string mimeType) = await _mongoService.UploadCollection(dbName, collectionName);
+                
                 HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "Content-Disposition");
                 return File(bytes, mimeType, collectionName);
             }

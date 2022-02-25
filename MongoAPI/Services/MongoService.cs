@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using MongoAPI.Models.Dto;
 using MongoAPI.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 
 namespace MongoAPI.Services
 {
@@ -73,19 +75,24 @@ namespace MongoAPI.Services
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<List<string>> GetDataBases()
+        public async Task<List<DdlDto>> GetDataBases(string connString)
         {
-            if (_mongoClient == null)
+            var client = new MongoClient(connString);
+            
+            if (client == null)
                 throw new Exception("Сессия с MongoDB отсутствует");
             
-            var res = new List<string>();
+            var res = new List<DdlDto>();
             
-            using (var cursor = await _mongoClient.ListDatabasesAsync())
+            using (var cursor = await client.ListDatabasesAsync())
             {
                 var databaseDocuments = await cursor.ToListAsync();
                 foreach (var databaseDocument in databaseDocuments)
                     if (databaseDocument["name"] != null)
-                        res.Add(databaseDocument["name"].ToString());
+                        res.Add(new DdlDto() 
+                        {
+                            Name = databaseDocument["name"].ToString()
+                        });
             }
             
             return res;
@@ -96,19 +103,33 @@ namespace MongoAPI.Services
         /// </summary>
         /// <param name="dbName">имя базы данных</param>
         /// <returns></returns>
-        public async Task<List<string>> GetCollections(string dbName)
+        public async Task<List<DdlDto>> GetCollections(string connString, string dbName)
         {
-            SetDatabase(dbName);
+            var client = new MongoClient(connString);
+            
+            if (client == null)
+                throw new Exception("Сессия с MongoDB отсутствует");
+            
+            if (string.IsNullOrEmpty(dbName) || string.IsNullOrWhiteSpace(dbName))
+                throw new Exception("Не указано название базы данных");
+            
+            IMongoDatabase database = client.GetDatabase(dbName);
 
-            var collectionsCursor = await _database.ListCollectionsAsync();
+            if (database == null)
+                throw new Exception("База данных не найдена");
+            
+            var collectionsCursor = await database.ListCollectionsAsync();
             List<BsonDocument> collections = await collectionsCursor.ToListAsync();
 
             if (collections == null)
                 return null;
             
-            List<string> res = new List<string>();
+            List<DdlDto> res = new List<DdlDto>();
             foreach (var collection in collections)
-                res.Add(collection["name"].ToString());
+                res.Add(new DdlDto() 
+                {
+                    Name = collection["name"].ToString()
+                });
             
             return res;
         }
