@@ -26,6 +26,6 @@ namespace MongoAPI.Models
         
         [Required(ErrorMessage = "Поле 'Цена за номер отеля' должно быть заполнено")]
         [Range(1, 999999, ErrorMessage = "Недопустимое значение для цены номера отеля")]
-        public decimal Cost { get; set; }
+        public int Cost { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using MongoAPI.Models;
 using MongoAPI.Models.Dto;
 using MongoAPI.Options;
 using MongoDB.Bson;
@@ -25,51 +26,6 @@ namespace MongoAPI.Services
             _mongoClient = new MongoClient(_settings.ConnectionString);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name">имя базы данных</param>
-        /// <exception cref="Exception"></exception>
-        private void SetDatabase(string name)
-        {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
-                throw new Exception("Не указано название базы данных");
-            
-            _database = _mongoClient.GetDatabase(name);
-
-            if (_database == null)
-                throw new Exception("База данных не найдена");
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name">имя коллекции</param>
-        /// <exception cref="Exception"></exception>
-        private IMongoCollection<T> GetCollection<T>(string name)
-        {
-            if (_database == null)
-                throw new Exception("База данных не найдена");
-            
-            if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
-                throw new Exception("Не указано название коллекции");
-
-            IMongoCollection<T> collection = _database.GetCollection<T>(name);
-
-            if (collection != null)
-                return collection;
-
-            try
-            {
-                _database.CreateCollection(name);
-                return _database.GetCollection<T>(name);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-        
         /// <summary>
         /// Возвращение списка доступных баз данных
         /// </summary>
@@ -133,61 +89,75 @@ namespace MongoAPI.Services
             
             return res;
         }
-
-        public async Task<List<T>> GetAsync<T>(string dbName, string collectionName)
+        
+        public void CreateDb(string connString, string dbName)
         {
-            SetDatabase(dbName);
-            IMongoCollection<T> collection = GetCollection<T>(collectionName);
-
-            return await collection.Find(_ => true).ToListAsync();
+            var client = new MongoClient(connString);
+            
+            if (client == null)
+                throw new Exception("Сессия с MongoDB отсутствует");
+            
+            if (string.IsNullOrEmpty(dbName) || string.IsNullOrWhiteSpace(dbName))
+                throw new Exception("Не указано название базы данных");
+        
+            client.GetDatabase(dbName);
         }
         
-        public async Task<T> GetOneAsync<T>(string dbName, string collectionName, string id)
+        public void CreateCollection(string connString, string dbName, string collectionName)
         {
-            SetDatabase(dbName);
-            IMongoCollection<T> collection = GetCollection<T>(collectionName);
-
-            var res = await collection.Find(new BsonDocument("_id", new ObjectId(id))).FirstOrDefaultAsync();
-            return res;
-        }
-
-        public async Task CreateAsync<T>(string dbName, string collectionName, T data)
-        {
-            SetDatabase(dbName);
-            IMongoCollection<T> collection = GetCollection<T>(collectionName);
-
-            await collection.InsertOneAsync(data);
-        }
-
-        public async Task UpdateAsync<T>(string dbName, string collectionName, T data, string id)
-        {
-            SetDatabase(dbName);
-            IMongoCollection<T> collection = GetCollection<T>(collectionName);
-
-            await collection.ReplaceOneAsync(new BsonDocument("_id", new ObjectId(id)), data);
-        }
-
-        public async Task RemoveAsync<T>(string dbName, string collectionName, string id)
-        {
-            SetDatabase(dbName);
-            IMongoCollection<T> collection = GetCollection<T>(collectionName);
-
-            await collection.DeleteOneAsync(new BsonDocument("_id", new ObjectId(id)));
-        }
-
-        public async Task<(byte[] bytes, string mimeType)> UploadCollection(string dbName, string collectionName)
-        {
-            SetDatabase(dbName);
-            IMongoCollection<BsonDocument> collection = GetCollection<BsonDocument>(collectionName);
-            List<BsonDocument> documents = await collection.Find(_ => true).ToListAsync();
+            var client = new MongoClient(connString);
             
-            if (documents == null || documents.Count == 0)
-                return (null, null);
+            if (client == null)
+                throw new Exception("Сессия с MongoDB отсутствует");
             
-            string jsonData = documents.ToJson();
-            byte[] bytes = Encoding.ASCII.GetBytes(jsonData);
+            if (string.IsNullOrEmpty(dbName) || string.IsNullOrWhiteSpace(dbName))
+                throw new Exception("Не указано название базы данных");
+        
+            var database = client.GetDatabase(dbName);
             
-            return (bytes, "text/plain");
+            if (database == null)
+                throw new Exception("База данных не найдена");
+            
+            database.CreateCollection(collectionName);
+        }
+
+        public async Task<List<HotelRoom>> GetAsync(string connString, string dbName, string collectionName, int comfortLevel)
+        {
+            var client = new MongoClient(connString);
+            
+            if (client == null)
+                throw new Exception("Сессия с MongoDB отсутствует");
+            
+            if (string.IsNullOrEmpty(dbName) || string.IsNullOrWhiteSpace(dbName))
+                throw new Exception("Не указано название базы данных");
+        
+            var database = client.GetDatabase(dbName);
+            
+            if (database == null)
+                throw new Exception("База данных не найдена");
+            
+            IMongoCollection<HotelRoom> collection = database.GetCollection<HotelRoom>(collectionName);
+            var filter = Builders<HotelRoom>.Filter.Eq("Cost", comfortLevel);
+            return await collection.Find(filter).ToListAsync();
+        }
+        
+        public void CreateDoc(string connString, string dbName, string collectionName, HotelRoom room)
+        {
+            var client = new MongoClient(connString);
+            
+            if (client == null)
+                throw new Exception("Сессия с MongoDB отсутствует");
+            
+            if (string.IsNullOrEmpty(dbName) || string.IsNullOrWhiteSpace(dbName))
+                throw new Exception("Не указано название базы данных");
+        
+            var database = client.GetDatabase(dbName);
+            
+            if (database == null)
+                throw new Exception("База данных не найдена");
+            
+            IMongoCollection<HotelRoom> collection = database.GetCollection<HotelRoom>(collectionName);
+            collection.InsertOne(room);
         }
     }
 }

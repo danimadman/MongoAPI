@@ -40,6 +40,7 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.4",
           "Microsoft.EntityFrameworkCore": "5.0.4",
           "Microsoft.EntityFrameworkCore.Abstractions": "5.0.4",
+          "Microsoft.EntityFrameworkCore.Analyzers": "5.0.14",
           "Microsoft.EntityFrameworkCore.Design": "5.0.4",
           "Microsoft.EntityFrameworkCore.Relational": "5.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.4",
@@ -516,7 +517,7 @@
       "Microsoft.EntityFrameworkCore/5.0.4": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "5.0.4",
-          "Microsoft.EntityFrameworkCore.Analyzers": "5.0.4",
+          "Microsoft.EntityFrameworkCore.Analyzers": "5.0.14",
           "Microsoft.Extensions.Caching.Memory": "5.0.0",
           "Microsoft.Extensions.DependencyInjection": "5.0.1",
           "Microsoft.Extensions.Logging": "5.0.0",
@@ -545,7 +546,7 @@
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/5.0.4": {},
+      "Microsoft.EntityFrameworkCore.Analyzers/5.0.14": {},
       "Microsoft.EntityFrameworkCore.Design/5.0.4": {
         "dependencies": {
           "Humanizer.Core": "2.8.26",
@@ -1125,7 +1126,11 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
-      "System.Collections.Immutable/5.0.0": {},
+      "System.Collections.Immutable/5.0.0": {
+        "compile": {
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
+        }
+      },
       "System.Collections.NonGeneric/4.3.0": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.3.0",
@@ -1152,7 +1157,11 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.ComponentModel.Annotations/5.0.0": {},
+      "System.ComponentModel.Annotations/5.0.0": {
+        "compile": {
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {}
+        }
+      },
       "System.ComponentModel.Primitives/4.3.0": {
         "dependencies": {
           "System.ComponentModel": "4.3.0",
@@ -1485,7 +1494,11 @@
           }
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/5.0.0": {},
+      "System.Runtime.CompilerServices.Unsafe/5.0.0": {
+        "compile": {
+          "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll": {}
+        }
+      },
       "System.Runtime.Extensions/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -3496,12 +3509,12 @@
       "path": "microsoft.entityframeworkcore.abstractions/5.0.4",
       "hashPath": "microsoft.entityframeworkcore.abstractions.5.0.4.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/5.0.4": {
+    "Microsoft.EntityFrameworkCore.Analyzers/5.0.14": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-z8OMwlXcUZJCArcDdhR0NRkmS0UyNg08l1LXPZCgYqjBeW8RvNXshH3H5ru/7IOVpyOfKrG5Q3nsgdD18OFG/g==",
-      "path": "microsoft.entityframeworkcore.analyzers/5.0.4",
-      "hashPath": "microsoft.entityframeworkcore.analyzers.5.0.4.nupkg.sha512"
+      "sha512": "sha512-Z9b4jHTwT1KshOJslNuW9fU7A86n48q1ysn5D6K023qCMw0/NwDvhqjSf/2lK0U0Tpgz3XBa2Tc51Yf20uZeNg==",
+      "path": "microsoft.entityframeworkcore.analyzers/5.0.14",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.5.0.14.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Design/5.0.4": {
       "type": "package",
